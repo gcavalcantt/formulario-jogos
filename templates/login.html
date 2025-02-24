@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Define a codificação como UTF-8 -->
+    <meta charset="utf-8">
+    <!-- Configura o viewport para responsividade em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Título da página que aparece na aba do navegador -->
+    <title>Jogoteca</title>
+    <!-- Link para o arquivo CSS do Bootstrap, que está na pasta "static" -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+  </head>
+  <body>
+    <!-- Container centralizado pelo Bootstrap -->
+    <div class="container">
+
+        {# Bloco para exibir mensagens flash (mensagens temporárias do backend) #}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <!-- Lista sem marcadores para mostrar cada mensagem -->
+                <ul id="messages" class="list-unstyled">
+                {% for message in messages %}
+                    <!-- Cada mensagem é exibida como um alerta com estilo de sucesso -->
+                    <li class="alert alert-success">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Cabeçalho simples para a página de login -->
+        <h1>Faça seu login</h1>
+
+        <!-- Formulário de login que envia os dados via método POST -->
+        <form method="POST" action="{{ url_for('autenticar') }}">
+            {# Campo oculto para informar a próxima URL a ser redirecionada após o login #}
+            <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
+            
+            <!-- Campo para o nome de usuário -->
+            <p>
+              <label>Nome de usuário:</label>
+              <input class="form-control" type="text" name="usuario" required>
+            </p>
+            
+            <!-- Campo para a senha -->
+            <p>
+              <label>Senha:</label>
+              <input class="form-control" type="password" name="senha" required>
+            </p>
+            
+            <!-- Botão para enviar o formulário -->
+            <p>
+              <button class="btn btn-primary" type="submit">Entrar</button>
+            </p>
+        </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Define a codificação de caracteres do documento como UTF-8 -->
+        <meta charset="utf-8">
+        <!-- Configura o viewport para garantir a responsividade em dispositivos móveis -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Título da página, exibido na aba do navegador -->
+        <title>Jogoteca</title>
+        <!-- Link para o arquivo CSS do Bootstrap, localizado na pasta "static" -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    </head>
+    <body>
+        <!-- Container principal do Bootstrap para centralizar o conteúdo -->
+        <div class="container">
+
+            <!-- Bloco para exibir mensagens flash, se houver -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <!-- Lista não ordenada sem marcadores para mostrar as mensagens -->
+                    <ul id="messages" class="list-unstyled">
+                    <!-- Loop para iterar sobre cada mensagem flash -->
+                    {% for message in messages %}
+                        <!-- Cada mensagem é exibida em um item de lista com as classes de alerta do Bootstrap -->
+                        <li class="alert alert-success">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            <!-- Cabeçalho da página -->
+            <div class="page-header">
+                <!-- O título da página é passado pelo servidor e exibido aqui -->
+                <h1>{{ titulo }}</h1>
+            </div>
+
+            <!-- Bloco de conteúdo: este espaço será preenchido pelas páginas que estendem este template -->
+            {% block conteudo %}{% endblock %}
+
+        </div> <!-- Fim do container principal -->
+    </body>
+</html>

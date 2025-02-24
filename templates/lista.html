@@ -1,0 +1,43 @@
+{% extends "template.html" %}
+{# Este template herda a estrutura base definida em "template.html" #}
+
+{% block conteudo %}
+  {# Início do bloco "conteudo" que será injetado na área designada no template base #}
+
+  <!-- Tabela para exibir a lista de jogos -->
+  <table class="table table-striped table-responsive table-bordered">
+    {# 
+      - "table": Aplica os estilos básicos de tabela do Bootstrap.
+      - "table-striped": Adiciona linhas alternadas com fundo diferente.
+      - "table-responsive": Garante que a tabela seja responsiva (rolável em telas menores).
+      - "table-bordered": Adiciona bordas às células da tabela.
+    #}
+    
+    <!-- Cabeçalho da tabela -->
+    <thead class="thead-default">
+      <tr>
+        <!-- Definição das colunas -->
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Console</th>
+      </tr>
+    </thead>
+    
+    <!-- Corpo da tabela -->
+    <tbody>
+      {# Loop para iterar sobre a lista de jogos passada para o template #}
+      {% for jogo in jogos %}
+      <tr>
+        <!-- Exibe o nome do jogo -->
+        <td>{{ jogo.nome }}</td>
+        <!-- Exibe a categoria do jogo -->
+        <td>{{ jogo.categoria }}</td>
+        <!-- Exibe o console do jogo -->
+        <td>{{ jogo.console }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
+{# Fim do bloco "conteudo". O conteúdo acima será inserido na área designada no template base #}

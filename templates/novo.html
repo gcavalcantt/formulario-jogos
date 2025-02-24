@@ -1,0 +1,41 @@
+{% extends "template.html" %}
+{# Este template estende o "template.html", ou seja, ele herda toda a estrutura definida nele #}
+
+{% block conteudo %}
+  {# Inicia o bloco "conteudo" onde será inserido o conteúdo específico desta página #}
+  
+  <!-- Formulário para cadastro/adição de um novo item -->
+  <form action="{{ url_for('criar') }}" method="post">
+    <!-- O atributo action define para qual rota o formulário será enviado (a rota 'criar') -->
+    <!-- O método "post" indica que os dados serão enviados via POST -->
+    
+    <fieldset>
+      {# Fieldset é usado para agrupar elementos do formulário, melhorando a organização semântica #}
+      
+      <!-- Grupo de formulário para o campo "Nome" -->
+      <div class="form-group">
+        <!-- Label associado ao campo "nome" -->
+        <label for="nome">Nome</label>
+        <!-- Campo de entrada de texto para o nome, com a classe do Bootstrap para estilização -->
+        <input type="text" id="nome" name="nome" class="form-control">
+      </div>
+      
+      <!-- Grupo de formulário para o campo "Categoria" -->
+      <div class="form-group">
+        <label for="categoria">Categoria</label>
+        <input type="text" id="categoria" name="categoria" class="form-control">
+      </div>
+      
+      <!-- Grupo de formulário para o campo "Console" -->
+      <div class="form-group">
+        <label for="console">Console</label>
+        <input type="text" id="console" name="console" class="form-control">
+      </div>
+      
+      <!-- Botão de submissão para enviar o formulário -->
+      <button type="submit" class="btn btn-primary btn-salvar">Salvar</button>
+    </fieldset>
+  </form>
+  
+{% endblock %}
+{# Encerra o bloco "conteudo". O conteúdo definido aqui será injetado na área reservada pelo template base #}
